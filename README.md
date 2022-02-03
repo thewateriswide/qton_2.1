@@ -12,11 +12,11 @@ Current version = `2.1.0`
 
 Compare to `Qton 2.0.0` :
 
-	- added **copy** method
-	- kernel functions have been rewritten
-	- better scalability
-	- better performance
-	- bug fixing
+- added **copy** method
+- kernel functions have been rewritten
+- better scalability
+- better performance
+- bug fixing
 
 
 
@@ -42,8 +42,8 @@ Qton is designed as less relying on external package. The only exception is `Num
 
 Current version is developed on
 
-	- *Python 3.9.7*
-	- *NumPy 1.20.3*
+- *Python 3.9.7*
+- *NumPy 1.20.3*
 
 
 
