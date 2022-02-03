@@ -2,7 +2,7 @@
 
 Qton is written in Python.
 
-Qon is for simulating and researching quantum computers.
+Qton is for simulating and researching quantum computers.
 
 
 
@@ -40,7 +40,7 @@ from qton import Qcircuit
 
 Qton is designed as less relying on external package. The only exception is `NumPy`.
 
-Current version is developed on
+Current version is developed with
 
 - *Python 3.9.7*
 - *NumPy 1.20.3*
