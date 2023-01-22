@@ -309,10 +309,15 @@ class Qdensity_matrix(_Basic_qcircuit_):
         state = self.state.reshape([2]*2*self.num_qubits)
         dic = locals()
 
-        string0 = ':, '*(self.num_qubits-qubit-1) + '0, ' + \
+        string00 = ':, '*(self.num_qubits-qubit-1) + '0, ' + \
             ':, '*(self.num_qubits-1) + '0, ' + ':, '*qubit
-        string1 = ':, '*(self.num_qubits-qubit-1) + '1, ' + \
+        string11 = ':, '*(self.num_qubits-qubit-1) + '1, ' + \
             ':, '*(self.num_qubits-1) + '1, ' + ':, '*qubit
+
+        string01 = ':, '*(self.num_qubits-qubit-1) + '0, ' + \
+            ':, '*(self.num_qubits-1) + '1, ' + ':, '*qubit
+        string10 = ':, '*(self.num_qubits-qubit-1) + '1, ' + \
+            ':, '*(self.num_qubits-1) + '0, ' + ':, '*qubit
 
         exec('reduced0 = state[' + string0 + ']', dic)
         measured = dic['reduced0'].reshape(2**(self.num_qubits-1), -1)
@@ -324,7 +329,9 @@ class Qdensity_matrix(_Basic_qcircuit_):
                 self.state = measured
                 self.num_qubits -= 1
             else:
-                exec('state[' + string1 + '] = 0.', dic)
+                exec('state[' + string01 + '] = 0.', dic)
+                exec('state[' + string10 + '] = 0.', dic)
+                exec('state[' + string11 + '] = 0.', dic)
                 self.state = dic['state'].reshape(2**self.num_qubits, -1)
             self.state /= probability0
         else:
@@ -334,7 +341,9 @@ class Qdensity_matrix(_Basic_qcircuit_):
                 self.state = dic['reduced1'].reshape(2**(self.num_qubits-1),-1)
                 self.num_qubits -= 1
             else:
-                exec('state[' + string0 +'] = 0.', dic)
+                exec('state[' + string00 + '] = 0.', dic)
+                exec('state[' + string01 + '] = 0.', dic)
+                exec('state[' + string10 + '] = 0.', dic)
                 self.state = dic['state'].reshape(2**self.num_qubits, -1)
             self.state /= (1. - probability0)
         return bit
